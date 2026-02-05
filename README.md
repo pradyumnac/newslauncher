@@ -49,18 +49,19 @@ For version increments of quote, ensure to dump up version number in `data/quote
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔍 **Google Search** — Instant search built-in.
-- 📚 **Dynamic Bookmarks** — Add your own links, saved via `localStorage`.
-- 🎨 **Themes** — Switch between Day, Night, Sepia, Gruvbox, Tokyo Night, and Catppuccin.
-- ⏰ **Real-Time Clock** — Stylish digital clock. You may stylize further with custom font
-- 📜 **Quote of the Day** — Fetched from hosted json. No third part dependency.
-- ⚡ **Offline Support** — Works offline via Service Worker.
-- 📱 **Installable PWA** — Add to your phone or desktop like an app.
-- 🌐 **Responsive Design** — Works on all screen sizes.
-- 🪶 **Lightweight** - Performance optimised for all screen sizes. Optimised with Lighthouse
-- 🕵 **Privacy Friendly** - Data never leaves your servers
+- **Google Search** — Instant search built-in.
+- **Dynamic Bookmarks** — Add your own links, saved via `localStorage`.
+- **Bookmark Folders** — Organize bookmarks into folders (News, Tools, Content) with keyboard navigation.
+- **Themes** — Switch between Day, Night, Sepia, Gruvbox, Tokyo Night, and Catppuccin.
+- **Real-Time Clock** — Stylish digital clock. You may stylize further with custom font
+- **Quote of the Day** — Fetched from hosted json. No third part dependency.
+- **Offline Support** — Works offline via Service Worker.
+- **Installable PWA** — Add to your phone or desktop like an app.
+- **Responsive Design** — Works on all screen sizes.
+- **Lightweight** - Performance optimised for all screen sizes. Optimised with Lighthouse
+- **Privacy Friendly** - Data never leaves your servers
 
 ---
 
@@ -140,31 +141,60 @@ You can deploy this project using GitHub Pages or any static file host:
 
 ---
 
-## 🧩 File Structure
+## File Structure
 
 ```
-web-launcher/
+newslauncher/
+├── index.html              # Main HTML file (v3 - current)
+├── v1.html                 # v1 Homepage (based on original project)
+├── v2.html                 # v2 Homepage (handwritten, discarded)
+├── v3.html                 # v3 Homepage (AI-written, supervised)
+├── manifest.json           # PWA manifest
+├── quotes.js               # Quotation fetching with IndexedDB
+├── quotes-worker.js        # Background worker for quote updates
+├── service-worker.js       # Offline cache logic
 │
-├── index.html             # Main HTML file
-├── v1.html                # v1 Homepage file ( Based on original project )
-├── v2.html                # v2 Homepage file ( Handwritten but now discarded)
-├── v3.html                # v3 Homepage file ( Written by AI, Supervised by yours truly : As it should be)
-├── manifest.json          # PWA manifest
-├── quotes.js              # Quotation fetching logic with Local IndexedDb support
-├── quotes-worker.js       # BG worker for quotation updation logic (non-blocking)
-├── service-worker.js      # Offline cache logic
-├── data/
-│   ├── ...                # Files for quotes local api
-├── img/
-│   ├── favicon.png        # App icon
-│   ├── ...                # Other icons
-│   └── favicon.ico        # Project screenshot
-│     ├── screenshots/        # App icon
-├── README.md              # This file
-├── tests/                 # Playwright tests (E2E & Unit)
-├── mise.toml              # Task configuration
-└── ...                    # Other static assets
+├── src/                    # Extracted modules for testing
+│   ├── bookmark-data.js    # Bookmark data structure + validation
+│   ├── bookmark-utils.js   # Helper functions (escapeHtml, generateKeySeq)
+│   └── bookmark-rendering.js # Rendering functions
+│
+├── tests/
+│   ├── unit/               # Vitest unit tests (55 tests)
+│   ├── e2e/                # Playwright E2E tests (14 tests)
+│   └── fixtures/           # Shared test data and mocks
+│
+├── data/                   # Quotes local API files
+├── img/                    # Icons and screenshots
+│
+├── vitest.config.js        # Vitest configuration
+├── playwright.config.js    # Playwright configuration
+├── mise.toml               # Task runner configuration
+│
+├── README.md               # This file
+├── CONTEXT.md              # Architecture, conventions, decisions
+├── TODO.md                 # Task tracking and roadmap
+├── TESTING.md              # Testing strategy (132 test cases)
+├── UseCases.md             # 17 bookmark system use cases
+├── UserFlows.md            # 14 user flow diagrams
+├── CONTRIBUTING.md         # Contribution guidelines
+└── CODE_OF_CONDUCT.md      # Community guidelines
 ```
+
+---
+
+## Documentation
+
+| Document                                 | Description                                               |
+| ---------------------------------------- | --------------------------------------------------------- |
+| [README.md](README.md)                   | Project overview, setup, deployment, customization        |
+| [CONTEXT.md](CONTEXT.md)                 | Architecture decisions, code conventions, quick reference |
+| [TODO.md](TODO.md)                       | Task tracking, sprint status, test execution status       |
+| [TESTING.md](TESTING.md)                 | Testing strategy with 132 planned test cases              |
+| [UseCases.md](UseCases.md)               | 17 bookmark system use cases with acceptance criteria     |
+| [UserFlows.md](UserFlows.md)             | 14 user flow diagrams with state transitions              |
+| [CONTRIBUTING.md](CONTRIBUTING.md)       | How to contribute to the project                          |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community guidelines                                      |
 
 ---
 

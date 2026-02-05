@@ -82,6 +82,16 @@
   - [x] Keybinding test names and combinations
   - [x] State fixtures and user flow scenarios
 
+##### Mise Tasks
+
+- [x] **Tasks:** Update mise.toml with new testing tasks
+  - [x] test-unit: Run unit tests (Vitest)
+  - [x] test-unit-watch: Run unit tests in watch mode
+  - [x] test-unit-coverage: Run unit tests with coverage
+  - [x] test-e2e: Run E2E tests (Playwright)
+  - [x] test-e2e-ui: Run E2E tests with UI
+  - [x] test-e2e-debug: Run E2E tests in debug mode
+
 #### Testing - Phase 1: Critical Path ✅ (55 tests implemented)
 
 **Status:** Complete - All Phase 1 tests passing
@@ -371,7 +381,9 @@
 - [ ] **Docs**: Add troubleshooting guide
 - [ ] **Docs**: Document bookmark data structure
 - [ ] **Docs**: Add contribution guidelines for adding bookmarks
-- [ ] **Docs**: Update README with new folder features
+- [x] **Docs**: Update README with new folder features
+- [x] **Docs**: Create comprehensive CONTEXT.md with architecture and conventions
+- [x] **Docs**: Add documentation index to README and CONTEXT.md
 
 ---
 
@@ -420,6 +432,8 @@
 
 ## Quick Commands
 
+### Using npm
+
 ```bash
 # Run all tests
 npm test
@@ -437,6 +451,57 @@ npm run test:e2e:debug         # Debug mode
 # Run specific test file
 npm run test:unit -- helpers.test.js
 npx playwright test tests/e2e/e2e.spec.js --grep "folder"
+```
+
+### Using mise (recommended)
+
+```bash
+# Run all tests
+mise run test
+
+# Run only unit tests (Vitest - fast!)
+mise run test-unit              # 290ms
+mise run test-unit-watch        # Watch mode
+mise run test-unit-coverage     # With coverage report
+
+# Run only E2E tests (Playwright)
+mise run test-e2e               # 3.9s
+mise run test-e2e-ui            # With UI
+mise run test-e2e-debug         # Debug mode
+
+# Other useful tasks
+mise run check                  # Run all static analysis
+mise run ci                     # Full CI pipeline
+mise run lighthouse             # Performance audit
+```
+
+### Available Mise Tasks
+
+```bash
+# List all tasks
+mise tasks
+
+# Development
+mise run start                  # Start development server
+mise run install                # Install dependencies
+
+# Testing
+mise run test                   # All tests
+mise run test-unit              # Unit tests only
+mise run test-e2e               # E2E tests only
+
+# Code Quality
+mise run lint                   # Lint JavaScript
+mise run format                 # Format all files
+mise run check                  # All static checks
+mise run check-format           # Check formatting
+mise run check-spelling         # Check spelling
+mise run validate-html          # Validate HTML
+
+# CI/CD
+mise run ci                     # Full CI pipeline
+mise run lighthouse             # Lighthouse audit
+mise run deploy                 # Deploy to GitHub Pages
 ```
 
 ---
