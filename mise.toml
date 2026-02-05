@@ -13,7 +13,7 @@ description = "Start the project"
 [tasks.test]
 run = '''
 #!/bin/bash
-TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+TIMESTAMP=${QA_TIMESTAMP:-$(date +%Y-%m-%d_%H-%M-%S)}
 RESULTS_DIR="test-results/$TIMESTAMP"
 mkdir -p "$RESULTS_DIR/unit" "$RESULTS_DIR/e2e"
 
@@ -81,7 +81,15 @@ description = "Run E2E tests against remote URL (default: production)"
 
 # Static Analysis Tasks
 [tasks.lint]
-run = "ESLINT_USE_FLAT_CONFIG=false npx eslint ."
+run = '''
+#!/bin/bash
+TIMESTAMP=${QA_TIMESTAMP:-$(date +%Y-%m-%d_%H-%M-%S)}
+RESULTS_DIR="test-results/$TIMESTAMP/lint"
+mkdir -p "$RESULTS_DIR"
+echo "▶️  Running Lint..."
+ESLINT_USE_FLAT_CONFIG=false npx eslint . | tee "$RESULTS_DIR/output.log"
+exit ${PIPESTATUS[0]}
+'''
 description = "Lint JavaScript files"
 
 [tasks.format]
@@ -89,28 +97,87 @@ run = "npx prettier --write ."
 description = "Format all files"
 
 [tasks.check-format]
-run = "npx prettier --check ."
+run = '''
+#!/bin/bash
+TIMESTAMP=${QA_TIMESTAMP:-$(date +%Y-%m-%d_%H-%M-%S)}
+RESULTS_DIR="test-results/$TIMESTAMP/check-format"
+mkdir -p "$RESULTS_DIR"
+echo "▶️  Checking Format..."
+npx prettier --check . | tee "$RESULTS_DIR/output.log"
+exit ${PIPESTATUS[0]}
+'''
 description = "Check file formatting"
 
 [tasks.check-spelling]
-run = "npx cspell '**'"
+run = '''
+#!/bin/bash
+TIMESTAMP=${QA_TIMESTAMP:-$(date +%Y-%m-%d_%H-%M-%S)}
+RESULTS_DIR="test-results/$TIMESTAMP/check-spelling"
+mkdir -p "$RESULTS_DIR"
+echo "▶️  Checking Spelling..."
+npx cspell '**' | tee "$RESULTS_DIR/output.log"
+exit ${PIPESTATUS[0]}
+'''
 description = "Check spelling across the project"
 
 [tasks.validate-html]
-run = "npx html-validate '*.html'"
+run = '''
+#!/bin/bash
+TIMESTAMP=${QA_TIMESTAMP:-$(date +%Y-%m-%d_%H-%M-%S)}
+RESULTS_DIR="test-results/$TIMESTAMP/validate-html"
+mkdir -p "$RESULTS_DIR"
+echo "▶️  Validating HTML..."
+npx html-validate '*.html' | tee "$RESULTS_DIR/output.log"
+exit ${PIPESTATUS[0]}
+'''
 description = "Validate HTML files"
 
 [tasks.check]
-depends = ["lint", "check-format", "check-spelling", "validate-html"]
-description = "Run all static analysis checks"
+run = '''
+#!/bin/bash
+export QA_TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+echo "🚀 Starting Full Check (Timestamp: $QA_TIMESTAMP)"
+echo "📂 Results will be stored in test-results/$QA_TIMESTAMP"
+
+mise run lint
+mise run check-format
+mise run check-spelling
+mise run validate-html
+'''
+description = "Run all static analysis checks with logging"
 
 # Performance & CI Tasks
 [tasks.lighthouse]
-run = "npx lhci autorun"
+run = '''
+#!/bin/bash
+TIMESTAMP=${QA_TIMESTAMP:-$(date +%Y-%m-%d_%H-%M-%S)}
+RESULTS_DIR="test-results/$TIMESTAMP/lighthouse"
+mkdir -p "$RESULTS_DIR"
+echo "▶️  Running Lighthouse..."
+npx lhci autorun | tee "$RESULTS_DIR/output.log"
+LH_EXIT=${PIPESTATUS[0]}
+
+# Copy artifacts if they exist
+if [ -d ".lighthouseci" ]; then
+  cp -r .lighthouseci/* "$RESULTS_DIR/" 2>/dev/null || true
+fi
+
+exit $LH_EXIT
+'''
 description = "Run Lighthouse performance audit"
 
 [tasks.ci]
-depends = ["install", "check", "test", "lighthouse"]
+run = '''
+#!/bin/bash
+export QA_TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+echo "🚀 CI Pipeline Started (Timestamp: $QA_TIMESTAMP)"
+echo "📂 All artifacts will be stored in test-results/$QA_TIMESTAMP"
+
+mise run install
+mise run check
+mise run test
+mise run lighthouse
+'''
 description = "CI Pipeline"
 
 [tasks.pre-commit]
