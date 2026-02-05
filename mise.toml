@@ -37,8 +37,12 @@ description = "Validate HTML files"
 depends = ["lint", "check-format", "check-spelling", "validate-html"]
 description = "Run all static analysis checks"
 
+[tasks.lighthouse]
+run = "npx lhci autorun"
+description = "Run Lighthouse performance audit"
+
 [tasks.ci]
-depends = ["install", "check", "test"]
+depends = ["install", "check", "test", "lighthouse"]
 description = "CI Pipeline"
 
 [tasks.pre-commit]

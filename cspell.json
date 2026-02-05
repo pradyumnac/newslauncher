@@ -38,7 +38,9 @@
     "capehart",
     "dont",
     "yourusername",
-    "domcontentloaded"
+    "domcontentloaded",
+    "lhci",
+    "autorun"
   ],
   "ignorePaths": [
     "node_modules/**",

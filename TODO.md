@@ -8,6 +8,7 @@
 - [x] **CI**: Consolidate tasks in `mise` and replace GitHub Actions with local checks.
 - [x] **Git**: Migrate from Husky to plain Git hooks (`.git/hooks/pre-commit`).
 - [x] **Architecture**: Adopt Single File Strategy (Keep CSS/JS inline for performance).
+- [x] **Performance**: Integrate Lighthouse CI into CI pipeline.
 - [ ] **Performance**: Replace Font Awesome with inline SVGs to eliminate the render-blocking CDN request.
 
 ## Features & Enhancements
