@@ -19,6 +19,14 @@
 
 ### Completed
 
+#### UI & UX Overhaul
+
+- [x] **Layout**: Implement Split Dashboard (1/3 My Bookmarks, 2/3 Folders) with equal height columns.
+- [x] **Scrolling**: Dynamic scroll arrows (disabled when content fits) and snap scrolling.
+- [x] **Grid**: Folder contents now display in a 3-row grid layout.
+- [x] **Themes**: Refine Catppuccin (Mocha) and Gruvbox palettes; fix typos; add tooltips to theme selector.
+- [x] **Icons**: Adjust icon hierarchy (Root Folders 1.5rem > Bookmarks/Back Button 1rem).
+
 #### Bookmark Folder System
 
 - [x] **Bookmarks**: Refactor bookmarks into a structured folder system (move existing flat structure to folders).
@@ -423,10 +431,10 @@
 | Phase 2                    | 60      | 15          | 15      | -           |
 | Phase 3                    | 10      | 0           | 0       | -           |
 | Data Validation            | 10      | 10          | 10      | -           |
-| **E2E Tests (Playwright)** | 15      | 14          | 14      | -           |
-| **Total**                  | **147** | **69**      | **69**  | **✅ 100%** |
+| **E2E Tests (Playwright)** | 30      | 27          | 27      | -           |
+| **Total**                  | **162** | **82**      | **82**  | **✅ 100%** |
 
-**Next Action:** Continue Phase 2 tests (state management, keybinding assignment)
+**Next Action:** Continue Phase 2 unit tests (state management).
 
 ---
 
@@ -444,13 +452,13 @@ npm run test:unit:watch        # Watch mode
 npm run test:unit:coverage     # With coverage report
 
 # Run only E2E tests (Playwright)
-npm run test:e2e               # 3.9s
+npm run test:e2e               # 5.8s
 npm run test:e2e:ui            # With UI
 npm run test:e2e:debug         # Debug mode
 
 # Run specific test file
 npm run test:unit -- helpers.test.js
-npx playwright test tests/e2e/e2e.spec.js --grep "folder"
+npx playwright test tests/e2e/layout.spec.js
 ```
 
 ### Using mise (recommended)
@@ -465,7 +473,8 @@ mise run test-unit-watch        # Watch mode
 mise run test-unit-coverage     # With coverage report
 
 # Run only E2E tests (Playwright)
-mise run test-e2e               # 3.9s
+mise run test-e2e               # 5.8s
+mise run test-e2e-remote        # Run against live site
 mise run test-e2e-ui            # With UI
 mise run test-e2e-debug         # Debug mode
 
@@ -489,6 +498,7 @@ mise run install                # Install dependencies
 mise run test                   # All tests
 mise run test-unit              # Unit tests only
 mise run test-e2e               # E2E tests only
+mise run test-e2e-remote        # Remote E2E tests
 
 # Code Quality
 mise run lint                   # Lint JavaScript
@@ -506,5 +516,5 @@ mise run deploy                 # Deploy to GitHub Pages
 
 ---
 
-**Last Updated:** February 5, 2026  
-**Status:** 69 tests passing (55 unit + 14 E2E), Vitest + Playwright setup complete
+**Last Updated:** February 6, 2026
+**Status:** 82 tests passing (55 unit + 27 E2E), New Layout & Theme System Active
