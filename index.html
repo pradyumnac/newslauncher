@@ -13,6 +13,12 @@
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
     <link rel="manifest" href="manifest.json" />
     <meta name="mobile-web-app-capable" content="yes" />
+    <!-- Preload Font Awesome to reduce CLS -->
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      as="style"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -40,6 +46,17 @@
         color: var(--color);
         text-align: center;
         overflow-x: hidden;
+      }
+
+      /* Prevent CLS: Reserve space for Font Awesome icons before they load */
+      .fa-solid,
+      .fa-brands,
+      [class^="fa-"],
+      [class*=" fa-"] {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.125em;
       }
 
       body.theme-day {
@@ -268,6 +285,8 @@
 
       .folder-header i {
         font-size: 1.3em;
+        width: 1.3em;
+        height: 1.3em;
         color: var(--color);
         opacity: 0.8;
       }
