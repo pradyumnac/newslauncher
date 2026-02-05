@@ -273,6 +273,12 @@
         transform: scale(1.1);
       }
 
+      .carousel-arrow:disabled {
+        opacity: 0.3;
+        cursor: default;
+        pointer-events: none;
+      }
+
       .bookmark-section {
         display: flex;
         gap: 20px;
@@ -284,6 +290,14 @@
         padding: 10px 0;
         scrollbar-width: thin;
         scrollbar-color: var(--card) transparent;
+      }
+
+      /* Grid view for Folder contents (3 rows) */
+      .bookmark-section.grid-view {
+        display: grid;
+        grid-template-rows: repeat(3, min-content);
+        grid-auto-flow: column;
+        align-content: center;
       }
 
       .bookmark-section::-webkit-scrollbar {
@@ -351,6 +365,10 @@
 
       .back-card:hover {
         opacity: 1;
+      }
+
+      .icon-link {
+        scroll-snap-align: start;
       }
 
       .icon-link a {
@@ -952,6 +970,7 @@
       function renderRootView() {
         const container = document.querySelector(".bookmark-section");
         container.innerHTML = "";
+        container.classList.remove("grid-view");
 
         // Render sticky bookmarks (if any)
         bookmarkData.stickyBookmarks.forEach((bookmark) => {
@@ -976,6 +995,7 @@
 
         // Load custom user bookmarks
         loadUserBookmarks();
+        updateArrowState();
       }
 
       function renderFolderView(folderId) {
@@ -984,6 +1004,7 @@
 
         const container = document.querySelector(".bookmark-section");
         container.innerHTML = "";
+        container.classList.add("grid-view");
 
         // Add back button as first item
         container.insertAdjacentHTML("beforeend", renderBackButton());
@@ -1003,6 +1024,7 @@
 
         // Load custom user bookmarks for this folder view
         loadUserBookmarks();
+        updateArrowState();
       }
 
       function openFolder(folderId) {
@@ -1010,6 +1032,33 @@
         appState.activeFolder = folderId;
         renderFolderView(folderId);
         assignHotkeys();
+      }
+
+      function updateArrowState() {
+        const section = document.querySelector(".bookmark-section");
+        const leftArrow = document.querySelector(".carousel-arrow-left");
+        const rightArrow = document.querySelector(".carousel-arrow-right");
+
+        if (!section || !leftArrow || !rightArrow) return;
+
+        const hasOverflow = section.scrollWidth > section.clientWidth;
+
+        // If no overflow, disable both
+        if (!hasOverflow) {
+          leftArrow.disabled = true;
+          rightArrow.disabled = true;
+          return;
+        }
+
+        // Check scroll position
+        const scrollLeft = section.scrollLeft;
+        const maxScroll = section.scrollWidth - section.clientWidth;
+
+        // Tolerance for float precision
+        const tolerance = 1;
+
+        leftArrow.disabled = scrollLeft <= tolerance;
+        rightArrow.disabled = scrollLeft >= maxScroll - tolerance;
       }
 
       function scrollCarousel(direction) {
@@ -1020,6 +1069,17 @@
           behavior: "smooth",
         });
       }
+
+      // Add scroll listener to update arrows
+      document
+        .querySelector(".bookmark-section")
+        .addEventListener("scroll", () => {
+          // Debounce slightly or just run? Running is fine for UI update.
+          updateArrowState();
+        });
+
+      // Update on resize
+      window.addEventListener("resize", updateArrowState);
 
       function goBack() {
         if (appState.currentView === "folder") {
