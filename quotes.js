@@ -156,13 +156,22 @@ async function searchQuotes(term) {
       const results = getReq.result.filter(
         ({ author, quote }) =>
           author.toLowerCase().includes(term) ||
-          quote.toLowerCase().includes(term),
+          quote.toLowerCase().includes(term)
       );
       resolve(results);
     };
     getReq.onerror = () => reject(getReq.error);
   });
 }
+
+// --- Expose for Testing ---
+window.fetchQuotesData = fetchQuotesData;
+window.initQuotesStorage = initQuotesStorage;
+window.getRandomQuote = getRandomQuote;
+window.searchQuotes = searchQuotes;
+window.clearQuotesDB = clearQuotesDB;
+window.fetchLatestVersion = fetchLatestVersion;
+window.openQuotesDB = openQuotesDB;
 
 (async function () {
   console.log("📚 Initializing quote system...");

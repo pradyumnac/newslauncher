@@ -1,0 +1,51 @@
+[tools]
+node = "lts"
+
+[tasks.install]
+run = "npm install"
+description = "Install dependencies"
+
+[tasks.start]
+run = "npx serve ."
+description = "Start the project"
+
+[tasks.test]
+run = "npx playwright test"
+description = "Run all tests (Unit & E2E)"
+
+[tasks.lint]
+run = "ESLINT_USE_FLAT_CONFIG=false npx eslint ."
+description = "Lint JavaScript files"
+
+[tasks.format]
+run = "npx prettier --write ."
+description = "Format all files"
+
+[tasks.check-format]
+run = "npx prettier --check ."
+description = "Check file formatting"
+
+[tasks.check-spelling]
+run = "npx cspell '**'"
+description = "Check spelling across the project"
+
+[tasks.validate-html]
+run = "npx html-validate '*.html'"
+description = "Validate HTML files"
+
+[tasks.check]
+depends = ["lint", "check-format", "check-spelling", "validate-html"]
+description = "Run all static analysis checks"
+
+[tasks.ci]
+depends = ["install", "check", "test"]
+description = "CI Pipeline"
+
+[tasks.pre-commit]
+run = "npx lint-staged"
+description = "Pre-commit hook"
+
+[tasks.deploy]
+depends = ["ci"]
+run = "git push"
+description = "Deploy to GitHub Pages (Run CI then push)"

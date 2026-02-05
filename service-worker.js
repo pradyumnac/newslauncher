@@ -10,7 +10,7 @@ self.addEventListener("install", (e) => {
         "/newslauncher/data/quotes.db.ascii.json",
         "/newslauncher/data/quotes-version.json",
       ]);
-    }),
+    })
   );
 });
 
@@ -18,6 +18,6 @@ self.addEventListener("fetch", (e) => {
   e.respondWith(
     caches.match(e.request).then((response) => {
       return response || fetch(e.request);
-    }),
+    })
   );
 });

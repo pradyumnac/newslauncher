@@ -72,14 +72,38 @@ For version increments of quote, ensure to dump up version number in `data/quote
 
 ## 🚀 Getting Started
 
-### 1. **Clone the Repository**
+### 1. **Clone and Setup**
+
+This project uses [mise](https://mise.jdx.dev/) to manage development tools (Node.js, etc.).
 
 ```bash
 git clone https://github.com/pradyumnac/newslauncher.git
 cd newslauncher
+mise install
 ```
 
-### 2. **Run Locally**
+### 2. **Development & Testing**
+
+This project relies on `mise` for all development tasks.
+
+- **Start Server**:
+  ```bash
+  mise run start
+  ```
+- **Run Tests (E2E & Unit)**:
+  ```bash
+  mise run test
+  ```
+- **Code Quality (Lint, Format, Spellcheck)**:
+  ```bash
+  mise run check
+  ```
+- **Full CI Pipeline**:
+  ```bash
+  mise run ci
+  ```
+
+### 3. **Run Locally (Manual)**
 
 Just open `index.html` in your browser.
 
@@ -90,9 +114,7 @@ Just open `index.html` in your browser.
 Or use a local server for PWA features:
 
 ```bash
-npx serve .
-# or use python
-python -m http.server
+mise run start
 ```
 
 ---
@@ -139,6 +161,8 @@ web-launcher/
 │   └── favicon.ico        # Project screenshot
 │     ├── screenshots/        # App icon
 ├── README.md              # This file
+├── tests/                 # Playwright tests (E2E & Unit)
+├── mise.toml              # Task configuration
 └── ...                    # Other static assets
 ```
 
@@ -221,6 +245,7 @@ We welcome contributions! Here's how you can help:
 git clone https://github.com/yourusername/web-launcher.git
 git checkout -b feature/your-feature
 # Make changes
+mise run ci # Ensure all checks pass
 git commit -m "Add: your feature"
 git push origin feature/your-feature
 # Then open a pull request

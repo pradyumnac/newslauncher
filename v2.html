@@ -271,6 +271,9 @@
           placeholder="Search Google..."
           aria-label="Google search input"
         />
+        <button type="submit" style="display: none" aria-label="Search">
+          Search
+        </button>
       </form>
     </header>
 
@@ -378,7 +381,7 @@
       // Quote of the Day (using ZenQuotes)
       // using public cors proxy
       fetch(
-        `https://api.allorigins.win/get?url=${encodeURIComponent("https://zenquotes.io/api/quotes")}`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent("https://zenquotes.io/api/quotes")}`
       )
         .then((response) => {
           if (response.ok) return response.json();
@@ -398,7 +401,7 @@
       function loadBookmarks() {
         const container = document.getElementById("user-links");
         const bookmarks = JSON.parse(
-          localStorage.getItem("customBookmarks") || "[]",
+          localStorage.getItem("customBookmarks") || "[]"
         );
         container.innerHTML = "";
         bookmarks.forEach(({ name, url }, index) => {
@@ -414,7 +417,7 @@
         const url = document.getElementById("urlInput").value.trim();
         if (!name || !url) return;
         const bookmarks = JSON.parse(
-          localStorage.getItem("customBookmarks") || "[]",
+          localStorage.getItem("customBookmarks") || "[]"
         );
         bookmarks.push({ name, url });
         localStorage.setItem("customBookmarks", JSON.stringify(bookmarks));

@@ -30,4 +30,3 @@ If you have a feature suggestion:
    - The problem you're trying to solve.
    - A clear and concise description of the desired solution.
    - Alternatives considered, if any.
-
