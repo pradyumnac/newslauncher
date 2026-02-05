@@ -242,13 +242,61 @@
         color: var(--color);
       }
 
+      .bookmark-carousel {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 20px;
+        min-height: 280px;
+      }
+
+      .carousel-arrow {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        background: var(--card);
+        color: var(--color);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-arrow:hover {
+        background: var(--bg2);
+        transform: scale(1.1);
+      }
+
       .bookmark-section {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 5%;
-        padding-left: 10%;
-        padding-right: 10%;
-        align-items: start;
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        flex: 1;
+        padding: 10px 0;
+        scrollbar-width: thin;
+        scrollbar-color: var(--card) transparent;
+      }
+
+      .bookmark-section::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .bookmark-section::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .bookmark-section::-webkit-scrollbar-thumb {
+        background: var(--card);
+        border-radius: 4px;
       }
 
       .bookmark-group {
@@ -258,8 +306,10 @@
         background: var(--card);
         padding: 20px;
         border-radius: 12px;
-        min-width: 180px;
-        max-width: 260px;
+        min-width: 240px;
+        max-width: 280px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
       }
 
       .folder-card {
@@ -392,9 +442,25 @@
       </form>
     </header>
 
-    <main class="bookmark-section">
-      <!-- Dynamic content will be rendered here -->
-    </main>
+    <div class="bookmark-carousel">
+      <button
+        class="carousel-arrow carousel-arrow-left"
+        aria-label="Scroll left"
+        onclick="scrollCarousel(-1)"
+      >
+        &#8249;
+      </button>
+      <main class="bookmark-section">
+        <!-- Dynamic content will be rendered here -->
+      </main>
+      <button
+        class="carousel-arrow carousel-arrow-right"
+        aria-label="Scroll right"
+        onclick="scrollCarousel(1)"
+      >
+        &#8250;
+      </button>
+    </div>
 
     <section
       class="bookmark-group user-bookmarks-container"
@@ -944,6 +1010,15 @@
         appState.activeFolder = folderId;
         renderFolderView(folderId);
         assignHotkeys();
+      }
+
+      function scrollCarousel(direction) {
+        const section = document.querySelector(".bookmark-section");
+        const scrollAmount = 280; // Approximate card width + gap
+        section.scrollBy({
+          left: direction * scrollAmount,
+          behavior: "smooth",
+        });
       }
 
       function goBack() {
