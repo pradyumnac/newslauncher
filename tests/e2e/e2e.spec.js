@@ -101,6 +101,31 @@ test.describe("E2E & Console Safety", () => {
     await expect(githubLink).toHaveAttribute("target", "_blank");
   });
 
+  test("should have back button icon size equal to bookmark icon size", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    // Open a folder to show bookmarks
+    await page.locator("[data-folder-id='tools']").click();
+    await expect(page.locator("#back-button")).toBeVisible();
+
+    // Get font-size of bookmark icon
+    const bookmarkIconSize = await page
+      .locator(".icon-link i")
+      .first()
+      .evaluate((el) => {
+        return window.getComputedStyle(el).fontSize;
+      });
+
+    // Get font-size of back button icon
+    const backIconSize = await page.locator("#back-button i").evaluate((el) => {
+      return window.getComputedStyle(el).fontSize;
+    });
+
+    expect(backIconSize).toBe(bookmarkIconSize);
+  });
+
   test.describe("Folder Navigation", () => {
     test("should display folders at root level", async ({ page }) => {
       await page.goto("/");
