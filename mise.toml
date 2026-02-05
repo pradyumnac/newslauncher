@@ -11,8 +11,45 @@ description = "Start the project"
 
 # Testing Tasks
 [tasks.test]
-run = "npm test"
-description = "Run all tests (Unit + E2E)"
+run = '''
+#!/bin/bash
+TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+RESULTS_DIR="test-results/$TIMESTAMP"
+mkdir -p "$RESULTS_DIR/unit" "$RESULTS_DIR/e2e"
+
+echo "📂 Test Results Directory: $RESULTS_DIR"
+
+# Run Unit Tests (Vitest)
+echo "▶️  Running Unit Tests..."
+npm run test:unit -- \
+  --reporter=default \
+  --reporter=json --outputFile.json="$RESULTS_DIR/unit/results.json" \
+  --reporter=html --outputFile.html="$RESULTS_DIR/unit/index.html"
+
+UNIT_EXIT_CODE=$?
+
+# Run E2E Tests (Playwright)
+echo "▶️  Running E2E Tests..."
+PLAYWRIGHT_HTML_REPORT="$RESULTS_DIR/e2e/report" npm run test:e2e -- \
+  --output="$RESULTS_DIR/e2e/artifacts" \
+  --reporter=list \
+  --reporter=html
+
+E2E_EXIT_CODE=$?
+
+# Summarize
+echo "----------------------------------------"
+echo "✅ Results stored in: $RESULTS_DIR"
+echo "📄 Unit Report: $RESULTS_DIR/unit/index.html"
+echo "📄 E2E Report:  $RESULTS_DIR/e2e/report/index.html"
+echo "----------------------------------------"
+
+# Exit with failure if either failed
+if [ $UNIT_EXIT_CODE -ne 0 ] || [ $E2E_EXIT_CODE -ne 0 ]; then
+  exit 1
+fi
+'''
+description = "Run all tests with hierarchical timestamped reporting"
 
 [tasks.test-unit]
 run = "npm run test:unit"
