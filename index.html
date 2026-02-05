@@ -397,16 +397,16 @@
         font-size: 1.5rem;
       }
 
-      .back-card {
+      .back-link a {
         cursor: pointer;
         background: var(--bg2);
         border: 2px dashed var(--color);
         opacity: 0.8;
-        transition: opacity 0.2s ease;
       }
 
-      .back-card:hover {
+      .back-link a:hover {
         opacity: 1;
+        background: var(--bg2);
       }
 
       .icon-link {
@@ -1006,12 +1006,11 @@
 
       function renderBackButton() {
         return `
-          <section class="bookmark-group back-card" id="back-button" aria-label="Go Back">
-            <div class="folder-header">
-              <i class="fa-solid fa-arrow-left"></i>
-              <span class="folder-name">Back</span>
-            </div>
-          </section>
+          <div class="icon-link back-link" id="back-button">
+            <a href="#">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </a>
+          </div>
         `;
       }
 
@@ -1129,7 +1128,8 @@
       // Update on resize
       window.addEventListener("resize", updateArrowState);
 
-      function goBack() {
+      function goBack(e) {
+        if (e && e.preventDefault) e.preventDefault();
         if (appState.currentView === "folder") {
           appState.currentView = "root";
           appState.activeFolder = null;

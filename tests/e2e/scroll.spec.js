@@ -78,7 +78,7 @@ test.describe("Horizontal Scroll & Layout Logic", () => {
         scrollLeft: el.scrollLeft,
       };
     });
-    console.log("Scroll State:", scrollState);
+
     expect(scrollState.scrollWidth).toBeGreaterThan(scrollState.clientWidth);
 
     // Force update arrow state in case resize/layout shift happened

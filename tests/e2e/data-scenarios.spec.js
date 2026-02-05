@@ -55,16 +55,15 @@ test.describe("Data Scenarios & Icon Sizing", () => {
       .evaluate((el) => window.getComputedStyle(el).fontSize);
 
     expect(backIconSize).toBe(bookmarkIconSize);
-    console.log(
-      `Back Icon: ${backIconSize}, Bookmark Icon: ${bookmarkIconSize}`
-    );
 
     // 3. Verify Grid Icons Uniformity (Check first 5 and last 5)
+    // Note: Back button is now .icon-link too, so count is 120 + 1
     const icons = page.locator(".icon-link i");
     const count = await icons.count();
-    expect(count).toBe(120);
+    expect(count).toBe(121);
 
-    for (let i of [0, 1, 2, 118, 119]) {
+    // Index 0 is Back Button. Index 1 is first bookmark.
+    for (let i of [0, 1, 2, 119, 120]) {
       const size = await icons
         .nth(i)
         .evaluate((el) => window.getComputedStyle(el).fontSize);
@@ -85,7 +84,8 @@ test.describe("Data Scenarios & Icon Sizing", () => {
     });
 
     await page.locator("[data-folder-id='tiny-folder']").click();
-    await expect(page.locator(".icon-link")).toHaveCount(5);
+    // 5 bookmarks + 1 back button
+    await expect(page.locator(".icon-link")).toHaveCount(6);
 
     // Layout check: Should still be grid view
     await expect(page.locator(".bookmark-section")).toHaveClass(/grid-view/);
@@ -147,6 +147,7 @@ test.describe("Data Scenarios & Icon Sizing", () => {
     });
 
     // Should see sticky bookmarks AND folder card
+    // Back button is NOT present in root view
     await expect(page.locator(".icon-link")).toHaveCount(3); // Sticky
     await expect(page.locator(".folder-card")).toHaveCount(1); // Folder
 
