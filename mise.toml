@@ -38,6 +38,10 @@ description = "Run E2E tests with UI"
 run = "npm run test:e2e:debug"
 description = "Run E2E tests in debug mode"
 
+[tasks.test-e2e-remote]
+run = "BASE_URL=${1:-https://pradyumnac.github.io/newslauncher/} npm run test:e2e"
+description = "Run E2E tests against remote URL (default: production)"
+
 # Static Analysis Tasks
 [tasks.lint]
 run = "ESLINT_USE_FLAT_CONFIG=false npx eslint ."
