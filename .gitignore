@@ -23,3 +23,20 @@ build/
 *.njsproj
 *.sln
 *.sw?
+
+# Testing and CI artifacts
+playwright-report/
+test-results/
+.lighthouseci/
+coverage/
+*.lcov
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
