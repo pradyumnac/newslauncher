@@ -5,7 +5,14 @@
   "main": "quotes-worker.js",
   "scripts": {
     "start": "mise run start",
-    "test": "mise run test",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:unit:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:ci": "npm run test:unit:coverage && npm run test:e2e",
     "lint": "mise run lint",
     "format": "mise run format",
     "check": "mise run check"
@@ -25,12 +32,15 @@
   "devDependencies": {
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.58.1",
+    "@vitest/coverage-v8": "^4.0.18",
     "cspell": "^9.6.4",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
+    "happy-dom": "^20.5.0",
     "html-validate": "^10.7.0",
     "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
-    "serve": "^14.2.5"
+    "serve": "^14.2.5",
+    "vitest": "^4.0.18"
   }
 }

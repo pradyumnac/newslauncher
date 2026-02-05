@@ -1,7 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests",
+  testDir: "./tests/e2e",
+  testMatch: "**/*.spec.js",
+  // Exclude Vitest test directories
+  testIgnore: ["**/tests/unit/**", "**/tests/integration/**"],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
