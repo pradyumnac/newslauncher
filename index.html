@@ -245,6 +245,45 @@
         max-width: 260px;
       }
 
+      .folder-card {
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .folder-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .folder-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.1em;
+        font-weight: 500;
+        padding: 8px 0;
+      }
+
+      .folder-header i {
+        font-size: 1.3em;
+        color: var(--color);
+        opacity: 0.8;
+      }
+
+      .back-card {
+        cursor: pointer;
+        background: var(--bg2);
+        border: 2px dashed var(--color);
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+      }
+
+      .back-card:hover {
+        opacity: 1;
+      }
+
       .icon-link a {
         text-decoration: none;
         color: inherit;
@@ -335,374 +374,26 @@
     </header>
 
     <main class="bookmark-section">
-      <!-- <h3>Indian News</h3> -->
-      <section class="bookmark-group" aria-label="Indian News Sites">
-        <div class="icon-link">
-          <a target="_blank" href="https://www.business-standard.com/"
-            ><i class="fa-solid fa-briefcase"></i> Business Standard</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.livemint.com/news"
-            ><i class="fa-solid fa-newspaper"></i> Livemint</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://economictimes.indiatimes.com/"
-            ><i class="fa-solid fa-chart-line"></i> Economic Times</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.moneycontrol.com/"
-            ><i class="fa-solid fa-indian-rupee-sign"></i> Moneycontrol</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.cnbctv18.com/"
-            ><i class="fa-solid fa-tv"></i> CNBC-TV18</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.hindustantimes.com/business"
-            ><i class="fa-solid fa-landmark"></i> HT
-          </a>
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.thehindubusinessline.com/"
-            ><i class="fa-solid fa-scale-balanced"></i> Hindu
-          </a>
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.zeebiz.com/"
-            ><i class="fa-solid fa-bullhorn"></i> Zee
-          </a>
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.etnownews.com/"
-            ><i class="fa-solid fa-broadcast-tower"></i> ET Now</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.businessworld.in/"
-            ><i class="fa-solid fa-network-wired"></i> BW Businessworld</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.news18.com/business/"
-            ><i class="fa-solid fa-rss"></i> News18
-          </a>
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.indiatoday.in/business"
-            ><i class="fa-solid fa-lightbulb"></i> India Today
-          </a>
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.financialexpress.com/"
-            ><i class="fa-solid fa-receipt"></i> Financial Express</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.businesstoday.in/"
-            ><i class="fa-solid fa-clipboard-list"></i> Business Today</a
-          >
-        </div>
-      </section>
-
-      <!-- Column 2: International News Sites -->
-      <section class="bookmark-group" aria-label="International News Sites">
-        <!-- <h3>International News</h3> -->
-        <div class="icon-link">
-          <a target="_blank" href="https://www.ft.com/"
-            ><i class="fa-solid fa-globe"></i> FT</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.nytimes.com/international/"
-            ><i class="fa-solid fa-book-open"></i> NYT</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.wsj.com/"
-            ><i class="fa-solid fa-pen-nib"></i> WSJ</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.economist.com/"
-            ><i class="fa-solid fa-landmark-dome"></i> Economist</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.bloomberg.com/"
-            ><i class="fa-solid fa-building-columns"></i> Bloomberg</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.reuters.com/"
-            ><i class="fa-solid fa-signal"></i> Reuters</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://asia.nikkei.com/"
-            ><i class="fa-solid fa-earth-asia"></i> Nikkei Asia</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://fortune.com/"
-            ><i class="fa-solid fa-star"></i> Fortune</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.forbes.com/"
-            ><i class="fa-solid fa-user-tie"></i> Forbes</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.marketwatch.com/"
-            ><i class="fa-solid fa-eye"></i> MarketWatch</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.barrons.com/"
-            ><i class="fa-solid fa-scroll"></i> Barron's</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.businessinsider.com/"
-            ><i class="fa-solid fa-user-secret"></i> BI</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://qz.com/"
-            ><i class="fa-solid fa-droplet"></i> Quartz</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.axios.com/markets"
-            ><i class="fa-solid fa-circle-info"></i> Axios Markets</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.statista.com/topics/996/markets/"
-            ><i class="fa-solid fa-chart-pie"></i> Statista News</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.morningbrew.com/"
-            ><i class="fa-solid fa-mug-hot"></i> Morning Brew</a
-          >
-        </div>
-      </section>
-
-      <!-- Column 3: Daily Tools -->
-      <section class="bookmark-group" aria-label="Daily Tools">
-        <!-- <h3>Daily Tools</h3> -->
-        <div class="icon-link">
-          <a target="_blank" href="https://mail.google.com/mail/u/0/"
-            ><i class="fa-solid fa-envelope"></i> Gmail1</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://mail.google.com/mail/u/1/"
-            ><i class="fa-solid fa-envelope"></i> Gmail2</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://mail.google.com/mail/u/2/"
-            ><i class="fa-solid fa-envelope"></i> Gmail3</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://docs.google.com/spreadsheets/u/0/"
-            ><i class="fa-solid fa-table"></i> G Sheets</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://news.google.com"
-            ><i class="fa-solid fa-newspaper"></i> G News</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://open.spotify.com/"
-            ><i class="fa-solid fa-music"></i> Spotify</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://moodist.app"
-            ><i class="fa-solid fa-face-smile"></i> Moodist</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://chat.openai.com/"
-            ><i class="fa-solid fa-robot"></i> ChatGPT</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://notebooklm.google.com/"
-            ><i class="fa-solid fa-book"></i> NotebookLM</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://gemini.google.com/"
-            ><i class="fa-solid fa-gem"></i> Gemini</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.perplexity.ai/"
-            ><i class="fa-solid fa-question-circle"></i> Perplexity</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://discord.com/channels/@me"
-            ><i class="fa-brands fa-discord"></i> Discord</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://ourworldindata.org/"
-            ><i class="fa-solid fa-mug-hot"></i> InData</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.screener.in/"
-            ><i class="fa-solid fa-chart-line"></i> Screener.in</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.nseindia.com/"
-            ><i class="fa-solid fa-indian-rupee-sign"></i> NSE India</a
-          >
-        </div>
-        <div class="icon-link">
-          <a
-            target="_blank"
-            href="https://github.com/pradyumnac?tab=repositories"
-            ><i class="fa-brands fa-github"></i> Github</a
-          >
-        </div>
-      </section>
-
-      <!-- Column 4: Financial Resources -->
-      <section class="bookmark-group" aria-label="Content">
-        <!-- <h3>Financial Resources</h3> -->
-        <div class="icon-link">
-          <a target="_blank" href="https://forum.valuepickr.com/"
-            ><i class="fa-solid fa-users"></i>C: VP Forum</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.oaktreecapital.com/insights/memo"
-            ><i class="fa-solid fa-chalkboard-user"></i> NW: H Marks</a
-          >
-        </div>
-        <div class="icon-link">
-          <a
-            target="_blank"
-            href="https://www.facebook.com/groups/147164928687742"
-            ><i class="fa-solid fa-users"></i> C: Asan</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.congruenceadvisors.com/"
-            ><i class="fa-solid fa-chalkboard-user"></i> NW: Congruence</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://buggyhuman.substack.com/"
-            ><i class="fa-solid fa-chalkboard-user"></i> NW: Buggy</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://x.com/SridharanAnand"
-            ><i class="fa-brands fa-twitter"></i> X: Buggy</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://platforms.substack.com/"
-            ><i class="fa-solid fa-chalkboard-user"></i> NW: Sangeet</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://surgecapital.substack.com/"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: Surgecap</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.finshots.in/archive"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: FinshotsD</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.finshots.in/markets"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: FinshotsM</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://thedailybrief.zerodha.com/"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: TD Brief</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.zerodha.com/varsity/"
-            ><i class="fa-solid fa-school"></i> CS: Varsity</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.freefincal.com/"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: Pattu</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://www.safalniveshak.com/"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: S Niveshak</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://fs.blog/"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: FS</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://fundooprofessor.wordpress.com/"
-            ><i class="fa-solid fa-chalkboard-user"></i> NW: S Bakshi</a
-          >
-        </div>
-        <div class="icon-link">
-          <a
-            href="https://drive.google.com/file/d/1gfCtXEWWvHlVOSo8qQLZL5fj2dY44iCM/view?usp=sharing"
-            ><i class="fa-solid fa-chalkboard-user"></i> B: Z Axioms</a
-          >
-        </div>
-        <div class="icon-link">
-          <a
-            href="https://drive.google.com/file/d/1qYksxZzFhKGPya2ykD3L2RYYVgPoRlF1/view?usp=sharing"
-            ><i class="fa-solid fa-chalkboard-user"></i> NW: N Sleep</a
-          >
-        </div>
-        <div class="icon-link">
-          <a target="_blank" href="https://opensourceinvestor.substack.com/"
-            ><i class="fa-solid fa-envelope-open-text"></i> NW: OSS Investor</a
-          >
-        </div>
-      </section>
-
-      <section class="bookmark-group" aria-label="Your Bookmarks">
-        <!-- <h3>My Bookmarks</h3> -->
-        <div id="user-links"></div>
-        <div class="add-bookmark">
-          <input
-            id="nameInput"
-            type="text"
-            placeholder="Label (e.g., Reddit)"
-          />
-          <input
-            id="urlInput"
-            type="url"
-            placeholder="URL (e.g., https://www.reddit.com)"
-          />
-          <button type="button" onclick="addBookmark()">Add</button>
-        </div>
-      </section>
+      <!-- Dynamic content will be rendered here -->
     </main>
+
+    <section
+      class="bookmark-group user-bookmarks-container"
+      aria-label="Your Bookmarks"
+      style="margin: 20px auto; max-width: 600px"
+    >
+      <h3 style="margin-top: 0">My Bookmarks</h3>
+      <div id="user-links"></div>
+      <div class="add-bookmark">
+        <input id="nameInput" type="text" placeholder="Label (e.g., Reddit)" />
+        <input
+          id="urlInput"
+          type="url"
+          placeholder="URL (e.g., https://www.reddit.com)"
+        />
+        <button type="button" onclick="addBookmark()">Add</button>
+      </div>
+    </section>
 
     <footer>
       <div id="quote" class="quote_display">Fetching quote of the day...</div>
@@ -756,6 +447,372 @@
     </div>
 
     <script>
+      // Bookmark Data Structure
+      const bookmarkData = {
+        folders: [
+          {
+            id: "news",
+            name: "News",
+            icon: "fa-newspaper",
+            bookmarks: [
+              {
+                name: "Business Standard",
+                url: "https://www.business-standard.com/",
+                icon: "fa-briefcase",
+              },
+              {
+                name: "Livemint",
+                url: "https://www.livemint.com/news",
+                icon: "fa-newspaper",
+              },
+              {
+                name: "Economic Times",
+                url: "https://economictimes.indiatimes.com/",
+                icon: "fa-chart-line",
+              },
+              {
+                name: "Moneycontrol",
+                url: "https://www.moneycontrol.com/",
+                icon: "fa-indian-rupee-sign",
+              },
+              {
+                name: "CNBC-TV18",
+                url: "https://www.cnbctv18.com/",
+                icon: "fa-tv",
+              },
+              {
+                name: "HT",
+                url: "https://www.hindustantimes.com/business",
+                icon: "fa-landmark",
+              },
+              {
+                name: "Hindu",
+                url: "https://www.thehindubusinessline.com/",
+                icon: "fa-scale-balanced",
+              },
+              {
+                name: "Zee",
+                url: "https://www.zeebiz.com/",
+                icon: "fa-bullhorn",
+              },
+              {
+                name: "ET Now",
+                url: "https://www.etnownews.com/",
+                icon: "fa-broadcast-tower",
+              },
+              {
+                name: "BW Businessworld",
+                url: "https://www.businessworld.in/",
+                icon: "fa-network-wired",
+              },
+              {
+                name: "News18",
+                url: "https://www.news18.com/business/",
+                icon: "fa-rss",
+              },
+              {
+                name: "India Today",
+                url: "https://www.indiatoday.in/business",
+                icon: "fa-lightbulb",
+              },
+              {
+                name: "Financial Express",
+                url: "https://www.financialexpress.com/",
+                icon: "fa-receipt",
+              },
+              {
+                name: "Business Today",
+                url: "https://www.businesstoday.in/",
+                icon: "fa-clipboard-list",
+              },
+              { name: "FT", url: "https://www.ft.com/", icon: "fa-globe" },
+              {
+                name: "NYT",
+                url: "https://www.nytimes.com/international/",
+                icon: "fa-book-open",
+              },
+              { name: "WSJ", url: "https://www.wsj.com/", icon: "fa-pen-nib" },
+              {
+                name: "Economist",
+                url: "https://www.economist.com/",
+                icon: "fa-landmark-dome",
+              },
+              {
+                name: "Bloomberg",
+                url: "https://www.bloomberg.com/",
+                icon: "fa-building-columns",
+              },
+              {
+                name: "Reuters",
+                url: "https://www.reuters.com/",
+                icon: "fa-signal",
+              },
+              {
+                name: "Nikkei Asia",
+                url: "https://asia.nikkei.com/",
+                icon: "fa-earth-asia",
+              },
+              { name: "Fortune", url: "https://fortune.com/", icon: "fa-star" },
+              {
+                name: "Forbes",
+                url: "https://www.forbes.com/",
+                icon: "fa-user-tie",
+              },
+              {
+                name: "MarketWatch",
+                url: "https://www.marketwatch.com/",
+                icon: "fa-eye",
+              },
+              {
+                name: "Barron's",
+                url: "https://www.barrons.com/",
+                icon: "fa-scroll",
+              },
+              {
+                name: "BI",
+                url: "https://www.businessinsider.com/",
+                icon: "fa-user-secret",
+              },
+              { name: "Quartz", url: "https://qz.com/", icon: "fa-droplet" },
+              {
+                name: "Axios Markets",
+                url: "https://www.axios.com/markets",
+                icon: "fa-circle-info",
+              },
+              {
+                name: "Statista News",
+                url: "https://www.statista.com/topics/996/markets/",
+                icon: "fa-chart-pie",
+              },
+              {
+                name: "Morning Brew",
+                url: "https://www.morningbrew.com/",
+                icon: "fa-mug-hot",
+              },
+            ],
+          },
+          {
+            id: "tools",
+            name: "Tools",
+            icon: "fa-toolbox",
+            bookmarks: [
+              {
+                name: "Gmail1",
+                url: "https://mail.google.com/mail/u/0/",
+                icon: "fa-envelope",
+              },
+              {
+                name: "Gmail2",
+                url: "https://mail.google.com/mail/u/1/",
+                icon: "fa-envelope",
+              },
+              {
+                name: "Gmail3",
+                url: "https://mail.google.com/mail/u/2/",
+                icon: "fa-envelope",
+              },
+              {
+                name: "G Sheets",
+                url: "https://docs.google.com/spreadsheets/u/0/",
+                icon: "fa-table",
+              },
+              {
+                name: "G News",
+                url: "https://news.google.com",
+                icon: "fa-newspaper",
+              },
+              {
+                name: "Spotify",
+                url: "https://open.spotify.com/",
+                icon: "fa-music",
+              },
+              {
+                name: "Moodist",
+                url: "https://moodist.app",
+                icon: "fa-face-smile",
+              },
+              {
+                name: "ChatGPT",
+                url: "https://chat.openai.com/",
+                icon: "fa-robot",
+              },
+              {
+                name: "NotebookLM",
+                url: "https://notebooklm.google.com/",
+                icon: "fa-book",
+              },
+              {
+                name: "Gemini",
+                url: "https://gemini.google.com/",
+                icon: "fa-gem",
+              },
+              {
+                name: "Perplexity",
+                url: "https://www.perplexity.ai/",
+                icon: "fa-question-circle",
+              },
+              {
+                name: "Discord",
+                url: "https://discord.com/channels/@me",
+                icon: "fa-discord",
+              },
+              {
+                name: "InData",
+                url: "https://ourworldindata.org/",
+                icon: "fa-mug-hot",
+              },
+              {
+                name: "Screener.in",
+                url: "https://www.screener.in/",
+                icon: "fa-chart-line",
+              },
+              {
+                name: "NSE India",
+                url: "https://www.nseindia.com/",
+                icon: "fa-indian-rupee-sign",
+              },
+              {
+                name: "Github",
+                url: "https://github.com/pradyumnac?tab=repositories",
+                icon: "fa-github",
+              },
+            ],
+          },
+          {
+            id: "content",
+            name: "Content",
+            icon: "fa-book-open",
+            bookmarks: [
+              {
+                name: "C: VP Forum",
+                url: "https://forum.valuepickr.com/",
+                icon: "fa-users",
+              },
+              {
+                name: "NW: H Marks",
+                url: "https://www.oaktreecapital.com/insights/memo",
+                icon: "fa-chalkboard-user",
+              },
+              {
+                name: "C: Asan",
+                url: "https://www.facebook.com/groups/147164928687742",
+                icon: "fa-users",
+              },
+              {
+                name: "NW: Congruence",
+                url: "https://www.congruenceadvisors.com/",
+                icon: "fa-chalkboard-user",
+              },
+              {
+                name: "NW: Buggy",
+                url: "https://buggyhuman.substack.com/",
+                icon: "fa-chalkboard-user",
+              },
+              {
+                name: "X: Buggy",
+                url: "https://x.com/SridharanAnand",
+                icon: "fa-twitter",
+              },
+              {
+                name: "NW: Sangeet",
+                url: "https://platforms.substack.com/",
+                icon: "fa-chalkboard-user",
+              },
+              {
+                name: "NW: Surgecap",
+                url: "https://surgecapital.substack.com/",
+                icon: "fa-envelope-open-text",
+              },
+              {
+                name: "NW: FinshotsD",
+                url: "https://www.finshots.in/archive",
+                icon: "fa-envelope-open-text",
+              },
+              {
+                name: "NW: FinshotsM",
+                url: "https://www.finshots.in/markets",
+                icon: "fa-envelope-open-text",
+              },
+              {
+                name: "NW: TD Brief",
+                url: "https://thedailybrief.zerodha.com/",
+                icon: "fa-envelope-open-text",
+              },
+              {
+                name: "CS: Varsity",
+                url: "https://www.zerodha.com/varsity/",
+                icon: "fa-school",
+              },
+              {
+                name: "NW: Pattu",
+                url: "https://www.freefincal.com/",
+                icon: "fa-envelope-open-text",
+              },
+              {
+                name: "NW: S Niveshak",
+                url: "https://www.safalniveshak.com/",
+                icon: "fa-envelope-open-text",
+              },
+              {
+                name: "NW: FS",
+                url: "https://fs.blog/",
+                icon: "fa-envelope-open-text",
+              },
+              {
+                name: "NW: S Bakshi",
+                url: "https://fundooprofessor.wordpress.com/",
+                icon: "fa-chalkboard-user",
+              },
+              {
+                name: "B: Z Axioms",
+                url: "https://drive.google.com/file/d/1gfCtXEWWvHlVOSo8qQLZL5fj2dY44iCM/view?usp=sharing",
+                icon: "fa-chalkboard-user",
+              },
+              {
+                name: "NW: N Sleep",
+                url: "https://drive.google.com/file/d/1qYksxZzFhKGPya2ykD3L2RYYVgPoRlF1/view?usp=sharing",
+                icon: "fa-chalkboard-user",
+              },
+              {
+                name: "NW: OSS Investor",
+                url: "https://opensourceinvestor.substack.com/",
+                icon: "fa-envelope-open-text",
+              },
+            ],
+          },
+        ],
+        stickyBookmarks: [],
+        validateNoNestedFolders() {
+          for (const folder of this.folders) {
+            if (folder.bookmarks) {
+              for (const bookmark of folder.bookmarks) {
+                if (bookmark.folders || bookmark.bookmarks) {
+                  throw new Error(
+                    `Invalid data: Nested folder detected in "${folder.name}". 2nd level nesting is not allowed.`
+                  );
+                }
+              }
+            }
+          }
+          return true;
+        },
+      };
+
+      // State Management
+      let appState = {
+        currentView: "root",
+        activeFolder: null,
+        currentHotkeys: {},
+      };
+
+      // Validate data on load
+      try {
+        bookmarkData.validateNoNestedFolders();
+      } catch (e) {
+        console.error(e.message);
+        alert(e.message);
+      }
+
       function updateClock() {
         const now = new Date();
         document.getElementById("clock").textContent = now.toLocaleString();
@@ -774,8 +831,121 @@
         });
       }
 
+      // Bookmark Rendering Functions
+      function renderBookmarkItem(bookmark) {
+        return `
+          <div class="icon-link">
+            <a target="_blank" href="${bookmark.url}">
+              <i class="fa-solid ${bookmark.icon || "fa-link"}"></i> ${bookmark.name}
+            </a>
+          </div>
+        `;
+      }
+
+      function renderFolderCard(folder) {
+        return `
+          <section class="bookmark-group folder-card" data-folder-id="${folder.id}" aria-label="${folder.name}">
+            <div class="folder-header">
+              <i class="fa-solid ${folder.icon || "fa-folder"}"></i>
+              <span class="folder-name">${folder.name}</span>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderBackButton() {
+        return `
+          <section class="bookmark-group back-card" id="back-button" aria-label="Go Back">
+            <div class="folder-header">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span class="folder-name">Back</span>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderRootView() {
+        const container = document.querySelector(".bookmark-section");
+        container.innerHTML = "";
+
+        // Render sticky bookmarks (if any)
+        bookmarkData.stickyBookmarks.forEach((bookmark) => {
+          container.insertAdjacentHTML(
+            "beforeend",
+            renderBookmarkItem(bookmark)
+          );
+        });
+
+        // Render folders
+        bookmarkData.folders.forEach((folder) => {
+          container.insertAdjacentHTML("beforeend", renderFolderCard(folder));
+        });
+
+        // Add click handlers to folders
+        document.querySelectorAll(".folder-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const folderId = card.getAttribute("data-folder-id");
+            openFolder(folderId);
+          });
+        });
+
+        // Load custom user bookmarks
+        loadUserBookmarks();
+      }
+
+      function renderFolderView(folderId) {
+        const folder = bookmarkData.folders.find((f) => f.id === folderId);
+        if (!folder) return;
+
+        const container = document.querySelector(".bookmark-section");
+        container.innerHTML = "";
+
+        // Add back button as first item
+        container.insertAdjacentHTML("beforeend", renderBackButton());
+
+        // Render folder bookmarks
+        folder.bookmarks.forEach((bookmark) => {
+          container.insertAdjacentHTML(
+            "beforeend",
+            renderBookmarkItem(bookmark)
+          );
+        });
+
+        // Add click handler to back button
+        document
+          .getElementById("back-button")
+          .addEventListener("click", goBack);
+
+        // Load custom user bookmarks for this folder view
+        loadUserBookmarks();
+      }
+
+      function openFolder(folderId) {
+        appState.currentView = "folder";
+        appState.activeFolder = folderId;
+        renderFolderView(folderId);
+        assignHotkeys();
+      }
+
+      function goBack() {
+        if (appState.currentView === "folder") {
+          appState.currentView = "root";
+          appState.activeFolder = null;
+          renderRootView();
+          assignHotkeys();
+        } else {
+          hideHotkeyModal();
+        }
+      }
+
       function loadBookmarks() {
+        renderRootView();
+      }
+
+      function loadUserBookmarks() {
         const container = document.getElementById("user-links");
+        if (!container) return;
+
         const bookmarks = JSON.parse(
           localStorage.getItem("customBookmarks") || "[]"
         );
@@ -832,43 +1002,109 @@
       let inputBuffer = "";
 
       function openLinkByKeySeq(seq) {
-        const link = hotkeyMap2[seq.toLowerCase()];
-        if (link) {
-          window.open(link.href, "_blank");
+        const action = hotkeyMap2[seq.toLowerCase()];
+        if (action) {
+          if (action.type === "folder") {
+            openFolder(action.id);
+          } else if (action.type === "back") {
+            goBack();
+          } else {
+            window.open(action.href, "_blank");
+          }
           inputBuffer = ""; // reset after match
         }
       }
 
+      function generateKeySeq(name, usedCombos) {
+        const label = name.trim().toLowerCase().replace(/\s+/g, "");
+        for (let i = 0; i < label.length - 1; i++) {
+          const pair = label[i] + label[i + 1];
+          if (/^[a-z0-9]{2}$/.test(pair) && !usedCombos.has(pair)) {
+            usedCombos.add(pair);
+            return pair;
+          }
+        }
+        return null;
+      }
+
       function assignHotkeys() {
-        const links = document.querySelectorAll(".icon-link a");
+        hotkeyMap2 = {};
+        hotkeyDetails = [];
         const usedCombos = new Set();
 
-        links.forEach((link) => {
-          const label = link.textContent
-            .trim()
-            .toLowerCase()
-            .replace(/\s+/g, "");
-          let keySeq = "";
-
-          for (let i = 0; i < label.length - 1; i++) {
-            const pair = label[i] + label[i + 1];
-            if (/^[a-z0-9]{2}$/.test(pair) && !usedCombos.has(pair)) {
-              keySeq = pair;
-              usedCombos.add(pair);
-              break;
+        if (appState.currentView === "root") {
+          // Assign hotkeys to folders
+          bookmarkData.folders.forEach((folder) => {
+            const keySeq = generateKeySeq(folder.name, usedCombos);
+            if (keySeq) {
+              const folderCard = document.querySelector(
+                `[data-folder-id="${folder.id}"]`
+              );
+              if (folderCard) {
+                hotkeyMap2[keySeq] = { type: "folder", id: folder.id };
+                hotkeyDetails.push({
+                  key: keySeq,
+                  label: folder.name,
+                  url: "Folder",
+                });
+              }
             }
-          }
+          });
 
-          if (keySeq) {
-            hotkeyMap2[keySeq] = link;
+          // Assign hotkeys to sticky bookmarks
+          bookmarkData.stickyBookmarks.forEach((bookmark) => {
+            const keySeq = generateKeySeq(bookmark.name, usedCombos);
+            if (keySeq) {
+              const link = Array.from(
+                document.querySelectorAll(".icon-link a")
+              ).find((a) => a.textContent.trim() === bookmark.name);
+              if (link) {
+                hotkeyMap2[keySeq] = { type: "link", href: link.href };
+                hotkeyDetails.push({
+                  key: keySeq,
+                  label: bookmark.name,
+                  url: link.href,
+                });
+              }
+            }
+          });
+        } else if (appState.currentView === "folder") {
+          // Assign hotkey to back button
+          const backSeq = generateKeySeq("Back", usedCombos);
+          if (backSeq) {
+            hotkeyMap2[backSeq] = { type: "back" };
             hotkeyDetails.push({
-              key: keySeq,
-              label: link.textContent.trim(),
-              url: link.href,
+              key: backSeq,
+              label: "Go Back",
+              url: "Navigation",
             });
           }
-        });
 
+          // Assign hotkeys to bookmarks in current folder
+          const folder = bookmarkData.folders.find(
+            (f) => f.id === appState.activeFolder
+          );
+          if (folder) {
+            folder.bookmarks.forEach((bookmark) => {
+              const keySeq = generateKeySeq(bookmark.name, usedCombos);
+              if (keySeq) {
+                const link = Array.from(
+                  document.querySelectorAll(".icon-link a")
+                ).find((a) => a.textContent.trim() === bookmark.name);
+                if (link) {
+                  hotkeyMap2[keySeq] = { type: "link", href: link.href };
+                  hotkeyDetails.push({
+                    key: keySeq,
+                    label: bookmark.name,
+                    url: link.href,
+                  });
+                }
+              }
+            });
+          }
+        }
+
+        // Update hotkey list display
         const list = document.getElementById("hotkeyList");
         if (list) {
           list.innerHTML = "";
@@ -900,7 +1136,17 @@
           showHotkeyModal();
           e.preventDefault();
         } else if (e.key === "Escape") {
-          hideHotkeyModal();
+          if (appState.currentView === "folder") {
+            goBack();
+          } else {
+            hideHotkeyModal();
+          }
+          e.preventDefault();
+        } else if (e.key === "ArrowLeft") {
+          if (appState.currentView === "folder") {
+            goBack();
+            e.preventDefault();
+          }
         } else if (e.key === " ") {
           e.preventDefault();
           const input = document.getElementById("googleSearchInput");

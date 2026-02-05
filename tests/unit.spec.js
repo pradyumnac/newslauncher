@@ -118,4 +118,74 @@ test.describe("Unit Logic (Browser Context)", () => {
     });
     expect(countAfter).toBe(0);
   });
+
+  test.describe("Bookmark Data Structure Validation", () => {
+    test("should validate no nested folders in bookmark data", async ({
+      page,
+    }) => {
+      const isValid = await page.evaluate(() => {
+        try {
+          return bookmarkData.validateNoNestedFolders();
+        } catch (e) {
+          return false;
+        }
+      });
+      expect(isValid).toBe(true);
+    });
+
+    test("should throw error when nested folder is detected", async ({
+      page,
+    }) => {
+      // Temporarily inject invalid data with nested folder
+      const errorMessage = await page.evaluate(() => {
+        const originalData = JSON.parse(JSON.stringify(bookmarkData.folders));
+
+        // Inject invalid nested folder
+        bookmarkData.folders[0].bookmarks.push({
+          id: "nested",
+          name: "Invalid Nested",
+          folders: [{ id: "nested2", name: "Deep Nested" }],
+        });
+
+        try {
+          bookmarkData.validateNoNestedFolders();
+          return null;
+        } catch (e) {
+          return e.message;
+        } finally {
+          // Restore original data
+          bookmarkData.folders = originalData;
+        }
+      });
+
+      expect(errorMessage).toContain("2nd level nesting is not allowed");
+    });
+
+    test("should throw error when nested bookmarks property exists", async ({
+      page,
+    }) => {
+      const errorMessage = await page.evaluate(() => {
+        const originalData = JSON.parse(JSON.stringify(bookmarkData.folders));
+
+        // Inject invalid data with bookmarks property (not in a folder)
+        bookmarkData.folders[0].bookmarks.push({
+          id: "nested",
+          name: "Invalid Nested",
+          bookmarks: [{ name: "Deep Bookmark", url: "http://example.com" }],
+        });
+
+        try {
+          bookmarkData.validateNoNestedFolders();
+          return null;
+        } catch (e) {
+          return e.message;
+        } finally {
+          // Restore original data
+          bookmarkData.folders = originalData;
+        }
+      });
+
+      expect(errorMessage).toContain("2nd level nesting is not allowed");
+    });
+  });
 });

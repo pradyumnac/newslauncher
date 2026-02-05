@@ -72,10 +72,14 @@ test.describe("E2E & Console Safety", () => {
       };
     });
 
-    // Ensure focus is not on input by clicking body
+    // First, navigate to Tools folder using "to" hotkey
     await page.locator("body").click({ position: { x: 0, y: 0 } });
+    await page.keyboard.type("to", { delay: 100 });
 
-    // Type "gi" with a delay to mimic human typing and ensure buffer logic catches it
+    // Wait for folder to open (back button should appear)
+    await expect(page.locator("#back-button")).toBeVisible();
+
+    // Now type "gi" for Github with a delay
     await page.keyboard.type("gi", { delay: 100 });
 
     // Check if window.open was called with a github url
@@ -85,10 +89,134 @@ test.describe("E2E & Console Safety", () => {
 
   test("should have clickable bookmarks", async ({ page }) => {
     await page.goto("/");
+
+    // Navigate to Tools folder first
+    await page.locator("[data-folder-id='tools']").click();
+    await expect(page.locator("#back-button")).toBeVisible();
+
     const githubLink = page.getByRole("link", { name: "Github" });
 
     await expect(githubLink).toBeVisible();
     await expect(githubLink).toHaveAttribute("href", /github\.com/);
     await expect(githubLink).toHaveAttribute("target", "_blank");
+  });
+
+  test.describe("Folder Navigation", () => {
+    test("should display folders at root level", async ({ page }) => {
+      await page.goto("/");
+
+      // Check that folders are visible
+      await expect(page.locator(".folder-card")).toHaveCount(3);
+      await expect(page.locator("[data-folder-id='news']")).toBeVisible();
+      await expect(page.locator("[data-folder-id='tools']")).toBeVisible();
+      await expect(page.locator("[data-folder-id='content']")).toBeVisible();
+    });
+
+    test("should open folder on click", async ({ page }) => {
+      await page.goto("/");
+
+      // Click on News folder
+      await page.locator("[data-folder-id='news']").click();
+
+      // Should show back button
+      await expect(page.locator("#back-button")).toBeVisible();
+
+      // Should show bookmarks from News folder (Business Standard is in News)
+      await expect(
+        page.locator(".icon-link a:has-text('Business Standard')")
+      ).toBeVisible();
+
+      // Should NOT show folder cards anymore
+      await expect(page.locator(".folder-card")).toHaveCount(0);
+    });
+
+    test("should navigate back using back button", async ({ page }) => {
+      await page.goto("/");
+
+      // Open News folder
+      await page.locator("[data-folder-id='news']").click();
+      await expect(page.locator("#back-button")).toBeVisible();
+
+      // Click back
+      await page.locator("#back-button").click();
+
+      // Should show folders again
+      await expect(page.locator(".folder-card")).toHaveCount(3);
+      await expect(page.locator("#back-button")).toHaveCount(0);
+    });
+
+    test("should navigate back using Escape key", async ({ page }) => {
+      await page.goto("/");
+
+      // Open News folder
+      await page.locator("[data-folder-id='news']").click();
+      await expect(page.locator("#back-button")).toBeVisible();
+
+      // Press Escape
+      await page.keyboard.press("Escape");
+
+      // Should show folders again
+      await expect(page.locator(".folder-card")).toHaveCount(3);
+    });
+
+    test("should navigate back using Left Arrow key", async ({ page }) => {
+      await page.goto("/");
+
+      // Open News folder
+      await page.locator("[data-folder-id='news']").click();
+      await expect(page.locator("#back-button")).toBeVisible();
+
+      // Press Left Arrow
+      await page.keyboard.press("ArrowLeft");
+
+      // Should show folders again
+      await expect(page.locator(".folder-card")).toHaveCount(3);
+    });
+
+    test("should open folder via keyboard shortcut", async ({ page }) => {
+      await page.goto("/");
+
+      // Mock window.open to track navigation
+      await page.evaluate(() => {
+        window.open = (url) => {
+          window.lastOpenedUrl = url;
+        };
+      });
+
+      // Focus body
+      await page.locator("body").click({ position: { x: 0, y: 0 } });
+
+      // Type "ne" for News folder with delay
+      await page.keyboard.type("ne", { delay: 100 });
+
+      // Should have opened News folder (check for back button)
+      await expect(page.locator("#back-button")).toBeVisible();
+    });
+
+    test("should assign different keybindings inside folder", async ({
+      page,
+    }) => {
+      await page.goto("/");
+
+      // Mock window.open
+      await page.evaluate(() => {
+        window.open = (url) => {
+          window.lastOpenedUrl = url;
+        };
+      });
+
+      // Open Tools folder
+      await page.locator("[data-folder-id='tools']").click();
+
+      // Focus body
+      await page.locator("body").click({ position: { x: 0, y: 0 } });
+
+      // Type "gi" for Github with delay (Github is in Tools folder)
+      await page.keyboard.type("gi", { delay: 100 });
+
+      // Check if window.open was called with github url
+      const lastUrl = await page.evaluate(() => window.lastOpenedUrl);
+      expect(lastUrl).toContain("github.com");
+    });
   });
 });
