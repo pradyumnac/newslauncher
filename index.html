@@ -172,6 +172,55 @@
         gap: 0.5rem;
       }
 
+      .main-layout {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 20px;
+        max-width: 1400px;
+        margin: 20px auto;
+        padding: 0 20px;
+        /* Ensure layout stability */
+        height: 340px;
+      }
+
+      @media (max-width: 768px) {
+        .main-layout {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+        .user-bookmarks-container,
+        .bookmark-carousel {
+          height: auto !important;
+          min-height: 340px;
+        }
+      }
+
+      /* Adjust User Bookmarks for Left Column */
+      .user-bookmarks-container {
+        margin: 0 !important; /* Override inline style if any, though I removed it from HTML */
+        max-width: none !important;
+        height: 100%;
+        min-height: 0; /* Allow shrinking below content size */
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        box-sizing: border-box; /* Ensure padding is included in height */
+      }
+
+      .user-bookmarks-container #user-links {
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      /* Adjust Carousel for Right Column */
+      .bookmark-carousel {
+        height: 100%;
+        min-height: 0; /* Override previous min-height if set */
+        min-width: 0; /* Prevent grid item blowout */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
       .theme-switcher select {
         background-color: var(--bg2);
         color: var(--color);
@@ -355,6 +404,11 @@
         opacity: 0.8;
       }
 
+      /* Make root folder icons bigger */
+      .folder-card .folder-header i {
+        font-size: 1.5rem;
+      }
+
       .back-card {
         cursor: pointer;
         background: var(--bg2);
@@ -460,43 +514,48 @@
       </form>
     </header>
 
-    <div class="bookmark-carousel">
-      <button
-        class="carousel-arrow carousel-arrow-left"
-        aria-label="Scroll left"
-        onclick="scrollCarousel(-1)"
+    <div class="main-layout">
+      <section
+        class="bookmark-group user-bookmarks-container"
+        aria-label="Your Bookmarks"
       >
-        &#8249;
-      </button>
-      <main class="bookmark-section">
-        <!-- Dynamic content will be rendered here -->
-      </main>
-      <button
-        class="carousel-arrow carousel-arrow-right"
-        aria-label="Scroll right"
-        onclick="scrollCarousel(1)"
-      >
-        &#8250;
-      </button>
-    </div>
+        <h2 style="margin-top: 0">My Bookmarks</h2>
+        <div id="user-links"></div>
+        <div class="add-bookmark">
+          <input
+            id="nameInput"
+            type="text"
+            placeholder="Label (e.g., Reddit)"
+          />
+          <input
+            id="urlInput"
+            type="url"
+            placeholder="URL (e.g., https://www.reddit.com)"
+          />
+          <button type="button" onclick="addBookmark()">Add</button>
+        </div>
+      </section>
 
-    <section
-      class="bookmark-group user-bookmarks-container"
-      aria-label="Your Bookmarks"
-      style="margin: 20px auto; max-width: 600px"
-    >
-      <h2 style="margin-top: 0">My Bookmarks</h2>
-      <div id="user-links"></div>
-      <div class="add-bookmark">
-        <input id="nameInput" type="text" placeholder="Label (e.g., Reddit)" />
-        <input
-          id="urlInput"
-          type="url"
-          placeholder="URL (e.g., https://www.reddit.com)"
-        />
-        <button type="button" onclick="addBookmark()">Add</button>
+      <div class="bookmark-carousel">
+        <button
+          class="carousel-arrow carousel-arrow-left"
+          aria-label="Scroll left"
+          onclick="scrollCarousel(-1)"
+        >
+          &#8249;
+        </button>
+        <main class="bookmark-section">
+          <!-- Dynamic content will be rendered here -->
+        </main>
+        <button
+          class="carousel-arrow carousel-arrow-right"
+          aria-label="Scroll right"
+          onclick="scrollCarousel(1)"
+        >
+          &#8250;
+        </button>
       </div>
-    </section>
+    </div>
 
     <footer>
       <div id="quote" class="quote_display">Fetching quote of the day...</div>

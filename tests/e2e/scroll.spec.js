@@ -70,12 +70,19 @@ test.describe("Horizontal Scroll & Layout Logic", () => {
     const section = page.locator(".bookmark-section");
 
     // Check if scrollWidth > clientWidth first to be sure
-    const scrollState = await section.evaluate((el) => ({
-      scrollWidth: el.scrollWidth,
-      clientWidth: el.clientWidth,
-    }));
+    const scrollState = await section.evaluate((el) => {
+      el.scrollLeft = 0; // Force reset
+      return {
+        scrollWidth: el.scrollWidth,
+        clientWidth: el.clientWidth,
+        scrollLeft: el.scrollLeft,
+      };
+    });
     console.log("Scroll State:", scrollState);
     expect(scrollState.scrollWidth).toBeGreaterThan(scrollState.clientWidth);
+
+    // Force update arrow state in case resize/layout shift happened
+    await page.evaluate(() => updateArrowState());
 
     // Left should be disabled (start), Right enabled
     await expect(leftArrow).toBeDisabled();
