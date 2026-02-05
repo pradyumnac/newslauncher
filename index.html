@@ -86,34 +86,22 @@
         --card: #e6d6b8; /* Distinct from bg2 and bg1 */
       }
       body.theme-gruvbox {
-        /* --bg1: #282828; */
-        /* --bg2: #1d2021; */
-        /* --color: #ebdbb2; */
-        /* --card: #3c3836; */
         --bg1: #282828;
-        --bg2: #202020; /* Darker to distinguish from card */
+        --bg2: #1d2021;
         --color: #ebdbb2;
-        --card: #3f3a36; /* More separation from bg2 */
+        --card: #3c3836;
       }
       body.theme-tokyo {
-        /* --bg1: #1a1b26; */
-        /* --bg2: #16161e; */
-        /* --color: #a9b1d6; */
-        /* --card: #2a2b3c; */
         --bg1: #1a1b26;
-        --bg2: #1f1f2b; /* Slightly lighter */
+        --bg2: #16161e;
         --color: #a9b1d6;
-        --card: #2f3040; /* More contrast from bg2 */
+        --card: #24283b;
       }
-      body.theme-catpuccin {
-        /* --bg1: #1e1e2e; */
-        /* --bg2: #181825; */
-        /* --color: #f5e0dc; */
-        /* --card: #2c2c3a; */
+      body.theme-catppuccin {
         --bg1: #1e1e2e;
-        --bg2: #242436; /* Slight contrast bump */
-        --color: #f5e0dc;
-        --card: #35354c; /* Clearly distinct from bg2 */
+        --bg2: #181825;
+        --color: #cdd6f4;
+        --card: #313244;
       }
 
       /* 🔵 Nord-inspired cool theme */
@@ -487,15 +475,16 @@
             onchange="changeTheme(this.value)"
             aria-label="Theme Selector"
           >
-            <option value="day">☀️</option>
-            <option value="night">🌙</option>
-            <option value="sepia">🎞️</option>
-            <option value="gruvbox">🧱</option>
-            <option value="tokyo">🏙️</option>
-            <option value="nord">❄️</option>
-            <option value="solarized-light">🌅</option>
-            <option value="solarized-dark">🌄</option>
-            <option value="theme-forest">🌲</option>
+            <option value="day" title="Day Mode">☀️</option>
+            <option value="night" title="Night Mode">🌙</option>
+            <option value="sepia" title="Sepia">🎞️</option>
+            <option value="gruvbox" title="Gruvbox">🧱</option>
+            <option value="tokyo" title="Tokyo Night">🏙️</option>
+            <option value="catppuccin" title="Catppuccin">🐱</option>
+            <option value="nord" title="Nord">❄️</option>
+            <option value="solarized-light" title="Solarized Light">🌅</option>
+            <option value="solarized-dark" title="Solarized Dark">🌄</option>
+            <option value="theme-forest" title="Forest">🌲</option>
           </select>
         </div>
       </div>
