@@ -257,15 +257,17 @@ Following TESTING.md Phase 1 (40 critical tests):
 ### Development Workflow
 
 ```bash
-# Terminal 1: Watch unit tests
-npm run test:unit:watch
+# Run all tests (Report: test-results/<timestamp>/)
+mise run test
 
-# Terminal 2: Run E2E tests when needed
-npm run test:e2e
+# Watch unit tests
+mise run test-unit-watch
 
-# Or run specific test
-npm run test:unit -- bookmark-data.test.js
-npm run test:e2e -- --grep "folder"
+# Run E2E tests when needed
+mise run test-e2e
+
+# Run E2E tests against production
+mise run test-e2e-remote
 ```
 
 ### CI/CD Workflow
@@ -444,7 +446,7 @@ jobs:
 
 ---
 
-**Status:** ✅ Implementation complete - Vitest + Playwright setup working (69 tests passing)
-**Last Updated:** February 5, 2026
+**Status:** ✅ Implementation complete - Vitest + Playwright setup working (82 tests passing)
+**Last Updated:** February 6, 2026
 
 ---

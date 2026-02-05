@@ -53,8 +53,10 @@ For version increments of quote, ensure to dump up version number in `data/quote
 
 - **Google Search** — Instant search built-in.
 - **Dynamic Bookmarks** — Add your own links, saved via `localStorage`.
+- **Split Dashboard** — Optimized layout with 1/3 "My Bookmarks" and 2/3 "Folders".
 - **Bookmark Folders** — Organize bookmarks into folders (News, Tools, Content) with keyboard navigation.
-- **Themes** — Switch between Day, Night, Sepia, Gruvbox, Tokyo Night, and Catppuccin.
+- **Smart Grid** — Folder contents display in a neat 3-row grid with dynamic scroll arrows.
+- **Themes** — Switch between 9 themes including Day, Night, Sepia, Gruvbox, Tokyo Night, and Catppuccin (Mocha).
 - **Real-Time Clock** — Stylish digital clock. You may stylize further with custom font
 - **Quote of the Day** — Fetched from hosted json. No third part dependency.
 - **Offline Support** — Works offline via Service Worker.
@@ -94,6 +96,11 @@ This project relies on `mise` for all development tasks.
 - **Run Tests (E2E & Unit)**:
   ```bash
   mise run test
+  # Reports generated in test-results/<timestamp>/
+  ```
+- **Remote E2E Tests**:
+  ```bash
+  mise run test-e2e-remote
   ```
 - **Code Quality (Lint, Format, Spellcheck)**:
   ```bash

@@ -190,11 +190,12 @@ mise run start              # Start dev server (http://localhost:8000)
 mise run install            # Install dependencies
 
 # Testing
-mise run test               # All tests (unit + E2E)
+mise run test               # All tests (Unit + E2E) -> test-results/<timestamp>/
 mise run test-unit          # Unit tests only (~290ms)
 mise run test-unit-watch    # Unit tests in watch mode
 mise run test-unit-coverage # Unit tests with coverage
-mise run test-e2e           # E2E tests only (~3.9s)
+mise run test-e2e           # E2E tests only (~5.8s)
+mise run test-e2e-remote    # Run E2E against remote URL
 mise run test-e2e-ui        # E2E with Playwright UI
 mise run test-e2e-debug     # E2E in debug mode
 
@@ -216,10 +217,10 @@ mise run deploy             # Deploy to GitHub Pages
 | Metric           | Value                    |
 | ---------------- | ------------------------ |
 | Unit Tests       | 55 passing               |
-| E2E Tests        | 14 passing               |
-| Total Tests      | 69                       |
+| E2E Tests        | 27 passing               |
+| Total Tests      | 82                       |
 | Unit Test Speed  | ~290ms                   |
-| E2E Test Speed   | ~3.9s                    |
+| E2E Test Speed   | ~6.2s                    |
 | Bookmark Folders | 3 (News, Tools, Content) |
 | Themes           | 9                        |
 
@@ -235,4 +236,4 @@ mise run deploy             # Deploy to GitHub Pages
 
 ---
 
-**Last Updated**: February 5, 2026
+**Last Updated**: February 6, 2026
