@@ -9,10 +9,36 @@ description = "Install dependencies"
 run = "npx serve ."
 description = "Start the project"
 
+# Testing Tasks
 [tasks.test]
-run = "npx playwright test"
-description = "Run all tests (Unit & E2E)"
+run = "npm test"
+description = "Run all tests (Unit + E2E)"
 
+[tasks.test-unit]
+run = "npm run test:unit"
+description = "Run unit tests (Vitest - fast)"
+
+[tasks.test-unit-watch]
+run = "npm run test:unit:watch"
+description = "Run unit tests in watch mode"
+
+[tasks.test-unit-coverage]
+run = "npm run test:unit:coverage"
+description = "Run unit tests with coverage report"
+
+[tasks.test-e2e]
+run = "npm run test:e2e"
+description = "Run E2E tests (Playwright)"
+
+[tasks.test-e2e-ui]
+run = "npm run test:e2e:ui"
+description = "Run E2E tests with UI"
+
+[tasks.test-e2e-debug]
+run = "npm run test:e2e:debug"
+description = "Run E2E tests in debug mode"
+
+# Static Analysis Tasks
 [tasks.lint]
 run = "ESLINT_USE_FLAT_CONFIG=false npx eslint ."
 description = "Lint JavaScript files"
@@ -37,6 +63,7 @@ description = "Validate HTML files"
 depends = ["lint", "check-format", "check-spelling", "validate-html"]
 description = "Run all static analysis checks"
 
+# Performance & CI Tasks
 [tasks.lighthouse]
 run = "npx lhci autorun"
 description = "Run Lighthouse performance audit"
